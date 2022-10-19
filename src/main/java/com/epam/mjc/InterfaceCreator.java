@@ -1,7 +1,5 @@
 package com.epam.mjc;
 
-import com.sun.source.tree.BreakTree;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +36,19 @@ public class InterfaceCreator {
     }
 
     public Supplier<List<String>> filterCollection(List<String> values) {
-        throw new UnsupportedOperationException("You should implement this method.");
+        List<String> myList = new ArrayList<>();
+        return () -> {
+            for (String a :values) {
+                boolean FirstChar = Character.isUpperCase(a.charAt(0));
+                boolean LastChar = '.' == a.charAt(a.length()-1);
+                boolean stringSize = 2 < a.length() - a.replaceAll(" ", "").length();
+                 if (FirstChar && LastChar && stringSize){
+                     myList.add(a);
+                 }
+            }
+            return myList;
+        };
+
     }
 
     public Function<List<String>, Map<String, Integer>> stringSize() {
