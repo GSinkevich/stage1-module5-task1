@@ -1,5 +1,7 @@
 package com.epam.mjc;
 
+import com.sun.source.tree.BreakTree;
+
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -10,8 +12,15 @@ import java.util.function.Supplier;
 
 public class InterfaceCreator {
 
-    public Predicate<List<String>> isValuesStartWithUpperCase() {
-        throw new UnsupportedOperationException("You should implement this method.");
+        public Predicate<List<String>> isValuesStartWithUpperCase() {
+        Predicate<List<String>> result = strings -> {
+            for (String s:strings) {
+                return Character.isUpperCase(s.charAt(0));
+               }
+            return true;
+        };
+
+        return  result;
     }
 
     public Consumer<List<Integer>> addEvenValuesAtTheEnd() {
