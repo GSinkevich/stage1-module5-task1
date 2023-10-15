@@ -1,6 +1,7 @@
 package com.epam.mjc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -52,10 +53,21 @@ public class InterfaceCreator {
     }
 
     public Function<List<String>, Map<String, Integer>> stringSize() {
-        throw new UnsupportedOperationException("You should implement this method.");
+        Map<String,Integer> result = new HashMap<>();
+        return listString -> {
+            for (var currentString :listString) {
+                result.put(currentString,currentString.length());
+            }
+            return  result;
+        };
     }
 
     public BiFunction<List<Integer>, List<Integer>, List<Integer>> concatList() {
-        throw new UnsupportedOperationException("You should implement this method.");
+        List<Integer> result = new ArrayList<>();
+        return (x,a) -> {
+            result.addAll(x);
+            result.addAll(a);
+            return  result;
+        };
     }
 }
